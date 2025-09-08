@@ -1,47 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charity: Water</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    body {
+      min-height: 100vh;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      background: url('img/Background.jpeg') no-repeat right center fixed;
+      background-size: cover;
+      background-position: right center;
+      image-rendering: auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+      background: #FFC907;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      box-sizing: border-box;
+      padding: 0 32px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+    }
+    .logo-img-box {
+      background: #FFF7E1;
+      border: 2px solid #111;
+      border-radius: 8px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      padding-right: 8px;
+      box-sizing: border-box;
+    }
+    .logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+    }
+    .logo-name-box {
+      background: #FFF7E1;
+      color: #111;
+      border-radius: 8px;
+      padding: 8px 18px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      margin-left: 8px;
+      font-weight: bold;
+      font-size: 19px;
+      font-family: Georgia, serif;
+      border: 2px solid #111;
+      box-sizing: border-box;
+    }
+    .about-box {
+      background: #FFF7E1;
+      color: #111;
+      border-radius: 8px;
+      padding: 8px 18px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      margin-left: 8px;
+      font-weight: 600;
+      font-size: 19px;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      border: 2px solid #111;
+      box-sizing: border-box;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .about-box:hover {
+      background: #FFD966;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 48px;
+    }
+    .header-btn {
+      background: #FFF7E1;
+      color: #111;
+      border-radius: 8px;
+      padding: 8px 18px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 19px;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      border: 2px solid #111;
+      box-sizing: border-box;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-left: 0;
+    }
+    .header-btn:hover {
+      background: #FFD966;
+    }
+    .header-divider {
+      font-size: 19px;
+      color: #111;
+      margin: 0 8px;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      font-weight: bold;
+      user-select: none;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    /* Hamburger menu styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      margin-left: 12px;
+      background: #FFF7E1;
+      border: 2px solid #111;
+      border-radius: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: #111;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      width: 100vw;
+      background: #FFC907;
+      z-index: 10;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .mobile-menu a {
+      background: #FFF7E1;
+      color: #111;
+      border-radius: 8px;
+      padding: 12px 24px;
+      margin: 8px 0;
+      font-weight: 600;
+      font-size: 19px;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      border: 2px solid #111;
+      text-decoration: none;
+      display: block;
+      width: 80vw;
+      text-align: center;
+    }
+    .mobile-menu a:hover {
+      background: #FFD966;
+    }
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 80px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .main-heading {
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      font-size: 45px;
+      color: #111;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+      margin-top: 0px;
+      border-radius: 0;
+      padding: 0;
+      max-width: 900px;
+      box-shadow: none;
+      white-space: normal;
+      line-height: 1.2;
+      align-self: center;
+    }
+    .sub-heading {
+      font-family: 'Avenir', Arial, sans-serif;
+      font-size: 30px;
+      color: #111;
+      text-align: left;
+      font-weight: 500;
+      margin-bottom: 32px;
+      margin-top: 0;
+      background: rgba(255,247,225,0.65);
+      border-radius: 8px;
+      padding: 16px 24px;
+      max-width: 600px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      align-self: flex-start;
+      margin-left: 0.5in;
+    }
+    .give-btn-container {
+      margin-left: 1.9in;
+      margin-top: 0.02in;
+    }
+    .payment-methods-container {
+      position: relative; /* Needed for absolute positioning of rain drops */
+      background: #003366;
+      border-radius: 8px;
+      padding: 24px 24px;
+      max-width: 350px;
+      margin-top: 24px;
+      margin-left: calc(0.5in + 1.45in);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      width: 100%;
+    }
+    .payment-methods-container .method-row {
+      position: relative; /* For rain drop positioning */
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .payment-methods-container .method-row:last-child {
+      margin-bottom: 0;
+    }
+    .payment-methods-container img {
+      height: 32px;
+      width: auto;
+      margin-right: 12px;
+    }
+    .payment-methods-container span {
+      color: #fff;
+      font-size: 26px;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+    }
+    .rain-drop {
+      position: absolute;
+      left: 100%;
+      top: 60%; /* Bring the rain drop down a bit */
+      transform: translateY(-50%) translateY(-10px);
+      font-size: 2em;
+      opacity: 1;
+      transition: transform 1.2s cubic-bezier(.4,2,.6,1), opacity 0.5s linear;
+      pointer-events: none;
+      z-index: 10;
+    }
+    /* Responsive styles for mobile and tablets */
+    @media (max-width: 900px) {
+      .main-heading {
+        font-size: 32px;
+        max-width: 95vw;
+      }
+      .sub-heading {
+        font-size: 20px;
+        max-width: 90vw;
+        margin-left: 5vw;
+        padding: 10px 12px;
+        text-align: center;
+        align-self: center;
+      }
+      .main-content {
+        padding-top: 70px;
+        align-items: center;
+      }
+      header {
+        padding: 0 10px;
+      }
+      .logo-img-box,
+      .logo-name-box,
+      .about-box,
+      .header-btn {
+        height: 38px;
+        font-size: 15px;
+        padding: 6px 10px;
+      }
+      .logo-img {
+        height: 28px;
+      }
+      .header-divider {
+        font-size: 15px;
+        margin: 0 4px;
+        height: 38px;
+      }
+      .give-btn-container,
+      .payment-methods-container {
+        margin-left: 0;
+        margin-top: 16px;
+        align-self: center;
+      }
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 4px;
+        height: 56px;
+      }
+      .header-left {
+        flex: 1;
+      }
+      .header-right {
+        flex: 1;
+        justify-content: flex-end;
+      }
+      .main-heading {
+        font-size: 20px;
+        padding: 0;
+        white-space: normal;
+        margin-top: 8px;
+        align-self: center;
+      }
+      .sub-heading {
+        font-size: 13px;
+        padding: 6px 4px;
+        max-width: 100%;
+        margin-left: 0;
+        text-align: center;
+        align-self: center;
+      }
+      .logo-img-box,
+      .logo-name-box,
+      .about-box,
+      .header-btn {
+        height: 28px;
+        font-size: 12px;
+        padding: 4px 6px;
+      }
+      .logo-img {
+        height: 18px;
+      }
+      .header-divider {
+        font-size: 12px;
+        margin: 0 2px;
+        height: 28px;
+      }
+      .main-content {
+        padding-top: 60px;
+        align-items: center;
+      }
+      .give-btn-container,
+      .payment-methods-container {
+        margin-left: 0;
+        margin-top: 16px;
+        align-self: center;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .header-left .about-box,
+      .header-left .logo-name-box {
+        display: none;
+      }
+      .mobile-menu {
+        display: flex;
+      }
+    }
+  </style>
+  <script>
+    // Hamburger menu toggle
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+    window.addEventListener('resize', function() {
+      if(window.innerWidth > 600) {
+        document.getElementById('mobileMenu').style.display = 'none';
+      }
+    });
+
+    // Rain drop animation for payment methods
+    function dropRainOnMethods() {
+      const rows = document.querySelectorAll('.payment-methods-container .method-row');
+      rows.forEach((row, i) => {
+        setTimeout(() => {
+          // Create rain drop emoji
+          const drop = document.createElement('span');
+          drop.className = 'rain-drop';
+          drop.textContent = "💧";
+          // Position after the payment method name
+          row.appendChild(drop);
+          // Animate drop
+          setTimeout(() => {
+            drop.style.transform = "translateY(30px)";
+            drop.style.opacity = "0";
+          }, 50);
+          // Remove after animation
+          setTimeout(() => {
+            if (row.contains(drop)) row.removeChild(drop);
+          }, 1200);
+        }, i * 600); // Stagger drops by 0.6s for a quick cascade
+      });
+    }
+    // Repeat rain drop animation every 3 seconds
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function repeatRain() {
+        dropRainOnMethods();
+        setTimeout(repeatRain, 3000);
+      }, 3000);
+    });
+  </script>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
+  <!-- Header section with logo and navigation boxes -->
+  <header>
+    <div class="header-left">
+      <div class="logo-img-box">
+        <img src="img/Logobaru.png" alt="Charity: water logo" class="logo-img">
+      </div>
+      <div class="logo-name-box">
+        Charity: water
+      </div>
+      <a href="#about" class="about-box">ABOUT US</a>
+      <!-- Hamburger button for mobile -->
+      <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="header-right">
+      <a href="#give" class="header-btn">GIVE 💧</a>
+      <span class="header-divider">|</span>
+      <a href="#signin" class="header-btn">SIGN IN</a>
+    </div>
+    <!-- Mobile menu (hidden by default) -->
+    <nav id="mobileMenu" class="mobile-menu" style="display:none;">
+      <a href="#about">ABOUT US</a>
+      <a href="#">Charity: water</a>
+      <a href="#signin">SIGN IN</a>
+    </nav>
+  </header>
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
+  <div class="main-content">
+    <h1 class="main-heading">
+      Give Clean Water in Seconds,<br>
+      See Your Impact Forever.
+    </h1>
+    <p class="sub-heading">
+      Your $10 donation transferred with one click, goes 100% to clean water project. Fast, transparent, and impactful.
+    </p>
 
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
-        </div>
-    </section>
+    <div class="give-btn-container" style="position:relative;">
+      <button id="giveBtn" style="
+        background: #003366;
+        color: #fff;
+        font-size: 22px;
+        font-family: 'Proxima Nova', Arial, sans-serif;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        padding: 16px 32px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        margin-bottom: 32px;
+        display: block;
+        width: 100%;
+        max-width: 250px;
+        position: relative;
+        z-index: 1;
+      ">
+        Give $10 Now!
+      </button>
+      <!-- Container for rain drop emojis -->
+      <div id="rainContainer" style="position:absolute; left:50%; top:0; width:0; height:0; z-index:2;"></div>
+    </div>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+    <div class="payment-methods-container">
+      <div class="method-row">
+        <img src="img/venmo copy.png" alt="Venmo logo">
+        <span>Venmo</span>
+      </div>
+      <div class="method-row">
+        <img src="img/Apple copy.png" alt="Apple Pay logo">
+        <span>Apple Pay</span>
+      </div>
+      <div class="method-row">
+        <img src="img/cash.png" alt="Cash App logo">
+        <span>Cash App</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p style="text-align:center; color:#fff; background:rgba(0,0,0,0.3); padding:12px 0; margin:0;">
+      © 2025 Charity: water | All Rights Reserved
+    </p>
+  </footer>
 </body>
 </html>

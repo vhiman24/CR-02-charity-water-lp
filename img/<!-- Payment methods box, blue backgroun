@@ -1,0 +1,38 @@
+    <!-- Payment methods box, blue background -->
+    <div
+      style="
+        background: #003366;
+        border-radius: 8px;
+        padding: 24px 24px;
+        max-width: 350px;
+        margin-top: 24px;
+        margin-left: 0.5in;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      "
+    >
+      <!-- Payment method: Venmo -->
+      <div style="display: flex; align-items: center; margin-bottom: 18px;">
+        <!-- Payment method name -->
+        <span style="color:#fff; font-size:19px; font-family:'Proxima Nova', Arial, sans-serif; margin-right:12px;">
+          Venmo
+        </span>
+        <!-- Venmo logo image on the right -->
+        <img src="img/venmo copy.png" alt="Venmo logo" style="height: 24px; width: auto;">
+      </div>
+      <!-- Payment method: Apple Pay -->
+      <div style="display: flex; align-items: center; margin-bottom: 18px;">
+        <span style="color:#fff; font-size:19px; font-family:'Proxima Nova', Arial, sans-serif; margin-right:12px;">
+          Apple Pay
+        </span>
+        <!-- Apple Pay logo image next to Apple Pay -->
+        <img src="img/Apple copy.png" alt="Apple Pay logo" style="height: 24px; width: auto;">
+      </div>
+      <!-- Payment method: Cash App -->
+      <div style="display: flex; align-items: center;">
+        <span style="color:#fff; font-size:19px; font-family:'Proxima Nova', Arial, sans-serif; margin-right:12px;">
+          Cash App
+        </span>
+        <!-- Cash App logo image next to Cash App -->
+        <img src="img/cash.png" alt="Cash App logo" style="height: 24px; width: auto;">
+      </div>
+    </div>
