@@ -5,19 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charity: Water</title>
   <style>
+    /* Prevent any scrolling on the page */
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      overflow-x: hidden;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden; /* No scroll allowed */
     }
     body {
       min-height: 100vh;
+      min-width: 100vw;
       font-family: 'Proxima Nova', Arial, sans-serif;
       background: url('img/Background.jpeg') no-repeat right center fixed;
       background-size: cover;
       background-position: right center;
       image-rendering: auto;
+      position: relative;
     }
     header {
       display: flex;
@@ -28,7 +32,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100vw;
       z-index: 2;
       box-sizing: border-box;
       padding: 0 32px;
@@ -185,15 +189,15 @@
     .mobile-menu a:hover {
       background: #FFD966;
     }
+    /* Main content area is fixed, but text is positioned as before */
     .main-content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding-top: 80px;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      width: 100vw;
+      height: calc(100vh - 112px); /* 56px header + 56px footer */
       box-sizing: border-box;
-      width: 100%;
+      overflow: hidden;
     }
     .main-heading {
       font-family: 'Proxima Nova', Arial, sans-serif;
@@ -202,64 +206,74 @@
       text-align: center;
       font-weight: bold;
       margin-bottom: 10px;
-      margin-top: 0px;
+      margin-top: 0.1in; /* 0.2in - 0.1in = 0.1in higher than before */
       border-radius: 0;
       padding: 0;
       max-width: 900px;
       box-shadow: none;
       white-space: normal;
       line-height: 1.2;
-      align-self: center;
+      margin-left: auto;
+      margin-right: auto;
     }
     .sub-heading {
       font-family: 'Avenir', Arial, sans-serif;
       font-size: 30px;
       color: #111;
-      text-align: left;
+      text-align: center;           /* Center the text */
       font-weight: 500;
       margin-bottom: 32px;
       margin-top: 0;
       background: rgba(255,247,225,0.65);
       border-radius: 8px;
-      padding: 16px 24px;
-      max-width: 600px;
+      padding: 16px 32px;
+      max-width: 500px;             /* Cut about 0.5 inch from the box width */
+      min-width: 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      align-self: flex-start;
-      margin-left: 0.5in;
+      margin-left: 0.5in;           /* Move the box 0.5 inch to the right */
+      margin-right: 0;
+      white-space: normal;
+      display: block;
     }
     .give-btn-container {
-      margin-left: 1.9in;
-      margin-top: 0.02in;
-    }
-    .payment-methods-container {
-      position: relative; /* Needed for absolute positioning of rain drops */
-      background: #003366;
-      border-radius: 8px;
-      padding: 24px 24px;
-      max-width: 350px;
-      margin-top: 24px;
-      margin-left: calc(0.5in + 1.45in);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      width: 100%;
-    }
-    .payment-methods-container .method-row {
-      position: relative; /* For rain drop positioning */
-      display: flex;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-    .payment-methods-container .method-row:last-child {
+      margin-left:0.5in;
+      margin-top:0.5in;
       margin-bottom: 0;
     }
-    .payment-methods-container img {
-      height: 32px;
-      width: auto;
-      margin-right: 12px;
+    .payment-methods-container {
+      position: relative;
+      background: #003366;
+      border-radius: 8px;
+      padding: 24px 12px;
+      width: 150px; /* Square box */
+      height: 150px;
+      margin-top: 24px;
+      margin-left: calc(0.5in + 1.7in);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .payment-methods-container .method-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+      justify-content: center;
     }
     .payment-methods-container span {
       color: #fff;
-      font-size: 26px;
+      font-size: 22px; /* Decreased by 4 from 26px */
       font-family: 'Proxima Nova', Arial, sans-serif;
+      vertical-align: middle;
+    }
+    .payment-methods-container img {
+      height: 22px; /* Decreased by 4 from 26px for logo consistency */
+      width: auto;
+      margin-left: 8px;
+      margin-right: 0;
+      vertical-align: middle;
     }
     .rain-drop {
       position: absolute;
@@ -277,18 +291,19 @@
       .main-heading {
         font-size: 32px;
         max-width: 95vw;
+        margin-left: 5vw;
+        text-align: left;
       }
       .sub-heading {
         font-size: 20px;
         max-width: 90vw;
         margin-left: 5vw;
         padding: 10px 12px;
-        text-align: center;
-        align-self: center;
+        text-align: left;
       }
       .main-content {
-        padding-top: 70px;
-        align-items: center;
+        padding-top: 0;
+        height: calc(100vh - 112px);
       }
       header {
         padding: 0 10px;
@@ -309,11 +324,13 @@
         margin: 0 4px;
         height: 38px;
       }
-      .give-btn-container,
-      .payment-methods-container {
-        margin-left: 0;
+      .give-btn-container {
+        margin-left: 5vw;
         margin-top: 16px;
-        align-self: center;
+      }
+      .payment-methods-container {
+        margin-left: calc(5vw + 60px);
+        margin-top: 16px;
       }
     }
     @media (max-width: 600px) {
@@ -335,7 +352,8 @@
         padding: 0;
         white-space: normal;
         margin-top: 8px;
-        align-self: center;
+        margin-left: 0;
+        text-align: center;
       }
       .sub-heading {
         font-size: 13px;
@@ -343,7 +361,6 @@
         max-width: 100%;
         margin-left: 0;
         text-align: center;
-        align-self: center;
       }
       .logo-img-box,
       .logo-name-box,
@@ -362,14 +379,24 @@
         height: 28px;
       }
       .main-content {
-        padding-top: 60px;
-        align-items: center;
+        padding-top: 0;
+        height: calc(100vh - 112px);
       }
-      .give-btn-container,
-      .payment-methods-container {
+      .give-btn-container {
         margin-left: 0;
         margin-top: 16px;
-        align-self: center;
+      }
+      .payment-methods-container {
+        margin-left: 0 !important;   /* Remove left margin */
+        margin-right: 0 !important;  /* Remove right margin */
+        margin-top: 16px !important;
+        left: 0;
+        right: 0;
+        /* Center the box horizontally */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       .hamburger {
         display: flex;
@@ -381,6 +408,25 @@
       .mobile-menu {
         display: flex;
       }
+    }
+    /* Footer yellow line at the bottom */
+    .footer-yellow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      height: 56px;
+      background: #FFC907;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      font-size: 17px;
+      color: #111;
+      text-align: center;
+      box-sizing: border-box;
+      border-top: 2px solid #111;
     }
   </style>
   <script>
@@ -463,8 +509,8 @@
       Give Clean Water in Seconds,<br>
       See Your Impact Forever.
     </h1>
-    <p class="sub-heading">
-      Your $10 donation transferred with one click, goes 100% to clean water project. Fast, transparent, and impactful.
+    <p class="sub-heading" style="text-align: left;">
+      Your $10 donation transferred with one click, goes 100% to clean water project. Fast, transparent, and
     </p>
 
     <div class="give-btn-container" style="position:relative;">
@@ -488,30 +534,31 @@
       ">
         Give $10 Now!
       </button>
-      <!-- Container for rain drop emojis -->
-      <div id="rainContainer" style="position:absolute; left:50%; top:0; width:0; height:0; z-index:2;"></div>
-    </div>
-
-    <div class="payment-methods-container">
-      <div class="method-row">
-        <img src="img/venmo copy.png" alt="Venmo logo">
-        <span>Venmo</span>
-      </div>
-      <div class="method-row">
-        <img src="img/Apple copy.png" alt="Apple Pay logo">
-        <span>Apple Pay</span>
-      </div>
-      <div class="method-row">
-        <img src="img/cash.png" alt="Cash App logo">
-        <span>Cash App</span>
+      <!-- Payment methods box is now directly under the button -->
+      <div class="payment-methods-container" style="margin-top: 16px; margin-left: 0.3in;">
+        <!-- Venmo row -->
+        <div class="method-row" style="display: flex; align-items: center; justify-content: flex-start; width: 100%; margin-bottom: 12px;">
+          <img src="img/venmo copy.png" alt="Venmo logo" style="height:26px; width:auto; margin-right:16px;">
+          <span style="margin-left:0;">Venmo</span>
+        </div>
+        <!-- Apple Pay row (Apple and Pay on the same line) -->
+        <div class="method-row" style="display: flex; align-items: center; justify-content: flex-start; width: 100%; margin-bottom: 12px;">
+          <img src="img/Apple copy.png" alt="Apple Pay logo" style="height:26px; width:auto; margin-right:16px;">
+          <span style="margin-left:0;">Apple Pay</span>
+        </div>
+        <!-- Cash App row (Cash and App on the same line) -->
+        <div class="method-row" style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+          <img src="img/cash.png" alt="Cash App logo" style="height:26px; width:auto; margin-right:16px;">
+          <span style="margin-left:0;">Cash App</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <footer>
-    <p style="text-align:center; color:#fff; background:rgba(0,0,0,0.3); padding:12px 0; margin:0;">
-      © 2025 Charity: water | All Rights Reserved
-    </p>
-  </footer>
+  <!-- Footer yellow line at the bottom -->
+  <div class="footer-yellow">
+    © 2025 | charity: water 
+    Donation Processing Center, 230 Franklin Rd., Ste. 11-II, Franklin, TN 37064
+  </div>
 </body>
 </html>
