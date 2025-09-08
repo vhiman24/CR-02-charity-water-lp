@@ -5,31 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charity: Water</title>
   <style>
-    /* Prevent any scrolling on the page */
+    /* Basic page setup */
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0;      /* No margin */
+      padding: 0;     /* No padding */
       width: 100vw;
-      height: 100vh;
-      overflow: hidden; /* No scroll allowed */
+      min-height: 100vh;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      background: #FFF7E1;
+      box-sizing: border-box;
+      scroll-behavior: smooth; /* Smooth scrolling between sections */
     }
     body {
-      min-height: 100vh;
-      min-width: 100vw;
-      font-family: 'Proxima Nova', Arial, sans-serif;
       background: url('img/Background.jpeg') no-repeat right center fixed;
       background-size: cover;
       background-position: right center;
-      image-rendering: auto;
+      min-height: 100vh;
       position: relative;
     }
+    /* Header styles remain unchanged */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 56px;
       background: #FFC907;
-      position: absolute;
+      position: fixed;      /* Changed from absolute to fixed */
       top: 0;
       left: 0;
       width: 100vw;
@@ -189,15 +190,14 @@
     .mobile-menu a:hover {
       background: #FFD966;
     }
-    /* Main content area is fixed, but text is positioned as before */
+    /* Main content area is now scrollable */
     .main-content {
-      position: absolute;
-      top: 56px;
-      left: 0;
+      margin-top: 56px; /* Space for header */
       width: 100vw;
-      height: calc(100vh - 112px); /* 56px header + 56px footer */
       box-sizing: border-box;
-      overflow: hidden;
+      padding-bottom: 32px;
+      overflow: visible;
+      background: none; /* Remove semi-transparent layer */
     }
     .main-heading {
       font-family: 'Proxima Nova', Arial, sans-serif;
@@ -286,6 +286,137 @@
       pointer-events: none;
       z-index: 10;
     }
+    /* New: Impact Stories Section */
+    .impact-section {
+      /* Use a semi-transparent yellow layer so background is visible */
+      background: rgba(255, 201, 7, 0.35); /* Light yellow, 35% opacity */
+      padding: 48px 0;
+      text-align: center;
+    }
+    .impact-section h2 {
+      font-size: 32px;
+      color: #003366;
+      margin-bottom: 24px;
+      font-weight: bold;
+    }
+    .impact-stories {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .story-card {
+      background: #FFF7E1;
+      border: 2px solid #111;
+      border-radius: 12px;
+      width: 260px;
+      padding: 16px;
+      box-sizing: border-box;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .story-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      background: #eee;
+    }
+    .story-caption {
+      font-size: 16px;
+      color: #111;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .story-quote {
+      font-size: 15px;
+      color: #003366;
+      margin-bottom: 0;
+    }
+    /* New: Statistics Section */
+    .stats-section {
+      background: #003366;
+      color: #fff;
+      padding: 48px 0;
+      text-align: center;
+    }
+    .stats-section h2 {
+      font-size: 32px;
+      margin-bottom: 32px;
+      font-weight: bold;
+      color: #FFC907;
+    }
+    .stats-numbers {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      background: #FFF7E1;
+      color: #003366;
+      border-radius: 12px;
+      border: 2px solid #FFC907;
+      width: 200px;
+      padding: 24px 12px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-number {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 18px;
+      font-weight: 500;
+      color: #111;
+    }
+    /* New: Call-to-Action Section */
+    .cta-section {
+      background: #FFF7E1;
+      padding: 48px 0;
+      text-align: center;
+      border-top: 2px solid #FFC907;
+    }
+    .cta-section h2 {
+      font-size: 28px;
+      color: #003366;
+      margin-bottom: 18px;
+      font-weight: bold;
+    }
+    .cta-section p {
+      font-size: 18px;
+      color: #111;
+      margin-bottom: 24px;
+    }
+    .cta-btn {
+      background: #FFC907;
+      color: #003366;
+      font-size: 22px;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      font-weight: bold;
+      border: 2px solid #003366;
+      border-radius: 8px;
+      padding: 16px 32px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 32px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .cta-btn:hover {
+      background: #FFD966;
+    }
     /* Responsive styles for mobile and tablets */
     @media (max-width: 900px) {
       .main-heading {
@@ -331,6 +462,16 @@
       .payment-methods-container {
         margin-left: calc(5vw + 60px);
         margin-top: 16px;
+      }
+      /* New sections responsive */
+      .impact-stories, .stats-numbers {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+      .story-card, .stat-card {
+        width: 90vw;
+        max-width: 320px;
       }
     }
     @media (max-width: 600px) {
@@ -408,12 +549,65 @@
       .mobile-menu {
         display: flex;
       }
+      /* New sections responsive */
+      .impact-section, .stats-section, .cta-section {
+        padding: 24px 0;
+      }
+      .story-card, .stat-card {
+        width: 98vw;
+        max-width: 320px;
+      }
     }
-    /* Footer yellow line at the bottom */
+    /* Add this at the end of your <style> section for beginner-friendly responsive centering */
+    @media (max-width: 700px) {
+      /* Center main content and all sections */
+      .main-content,
+      .impact-section,
+      .stats-section,
+      .cta-section {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .main-heading,
+      .sub-heading,
+      .give-btn-container,
+      .payment-methods-container {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        align-self: center !important;
+        text-align: center !important;
+      }
+      .impact-stories,
+      .stats-numbers {
+        flex-direction: column !important;
+        gap: 16px !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      .story-card,
+      .stat-card {
+        width: 95vw !important;
+        max-width: 320px !important;
+      }
+      .payment-methods-container {
+        margin-top: 16px !important;
+        left: 0 !important;
+        right: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+    }
+    /* Footer stays at the bottom after all content */
     .footer-yellow {
-      position: absolute;
-      bottom: 0;
-      left: 0;
       width: 100vw;
       height: 56px;
       background: #FFC907;
@@ -427,6 +621,8 @@
       text-align: center;
       box-sizing: border-box;
       border-top: 2px solid #111;
+      position: static; /* Footer is after all content */
+      margin-top: 0;
     }
   </style>
   <script>
@@ -505,6 +701,7 @@
   </header>
 
   <div class="main-content">
+    <!-- Hero Section -->
     <h1 class="main-heading">
       Give Clean Water in Seconds,<br>
       See Your Impact Forever.
@@ -512,7 +709,6 @@
     <p class="sub-heading" style="text-align: left;">
       Your $10 donation transferred with one click, goes 100% to clean water project. Fast, transparent, and
     </p>
-
     <div class="give-btn-container" style="position:relative;">
       <button id="giveBtn" style="
         background: #003366;
@@ -534,19 +730,16 @@
       ">
         Give $10 Now!
       </button>
-      <!-- Payment methods box is now directly under the button -->
+      <!-- Payment methods box -->
       <div class="payment-methods-container" style="margin-top: 16px; margin-left: 0.3in;">
-        <!-- Venmo row -->
         <div class="method-row" style="display: flex; align-items: center; justify-content: flex-start; width: 100%; margin-bottom: 12px;">
           <img src="img/venmo copy.png" alt="Venmo logo" style="height:26px; width:auto; margin-right:16px;">
           <span style="margin-left:0;">Venmo</span>
         </div>
-        <!-- Apple Pay row (Apple and Pay on the same line) -->
         <div class="method-row" style="display: flex; align-items: center; justify-content: flex-start; width: 100%; margin-bottom: 12px;">
           <img src="img/Apple copy.png" alt="Apple Pay logo" style="height:26px; width:auto; margin-right:16px;">
           <span style="margin-left:0;">Apple Pay</span>
         </div>
-        <!-- Cash App row (Cash and App on the same line) -->
         <div class="method-row" style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
           <img src="img/cash.png" alt="Cash App logo" style="height:26px; width:auto; margin-right:16px;">
           <span style="margin-left:0;">Cash App</span>
@@ -555,7 +748,63 @@
     </div>
   </div>
 
-  <!-- Footer yellow line at the bottom -->
+  <!-- Impact Stories Section -->
+  <section class="impact-section" id="impact">
+    <!-- Section heading -->
+    <h2>Impact Stories</h2>
+    <div class="impact-stories">
+      <!-- Story 1 -->
+      <div class="story-card">
+        <img src="img/Happy.jpeg" alt="Happy family with clean water">
+        <div class="story-caption">"Clean water changed our lives!"</div>
+        <div class="story-quote">– Maria, Kenya</div>
+      </div>
+      <!-- Story 2 -->
+      <div class="story-card">
+        <img src="img/Rame.jpeg" alt="Smiling children">
+        <div class="story-caption">"Now we can go to school every day."</div>
+        <div class="story-quote">– Puja, Bangladesh</div>
+      </div>
+      <!-- Story 3 -->
+      <div class="story-card">
+        <img src="img/Happy Family.jpg" alt="Community well celebration">
+        <div class="story-caption">"Our whole village celebrates clean water."</div>
+        <div class="story-quote">– Lila, Malawi.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats-section" id="stats">
+    <h2>Our Impact in Numbers</h2>
+    <div class="stats-numbers">
+      <div class="stat-card">
+        <div class="stat-number">250+</div>
+        <div class="stat-label">Communities Served</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Wells Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10,000+</div>
+        <div class="stat-label">People Reached</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta-section" id="get-involved">
+    <h2>Ready to Make a Difference?</h2>
+    <p>
+      Join us in bringing clean water to more families. Every donation counts!
+    </p>
+    <a href="#give" class="cta-btn">Donate Now 💧</a>
+    <br>
+    <a href="#about" class="cta-btn" style="background:#003366; color:#FFC907; border-color:#FFC907;">Get Involved</a>
+  </section>
+
+  <!-- Footer at the bottom of the page -->
   <div class="footer-yellow">
     © 2025 | charity: water 
     Donation Processing Center, 230 Franklin Rd., Ste. 11-II, Franklin, TN 37064
